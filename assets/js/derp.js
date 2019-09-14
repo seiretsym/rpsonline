@@ -50,7 +50,7 @@ var uiConfig = {
     queryParameterForSignInSuccessUrl: 'signInSuccessUrl',
     // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
     signInFlow: 'popup',
-    signInSuccessUrl: '/',
+    signInSuccessUrl: './',
     signInOptions: [
       // Leave the lines as is for the providers you want to offer your users.
       firebase.auth.GithubAuthProvider.PROVIDER_ID,
@@ -64,10 +64,10 @@ var uiConfig = {
     // tosUrl and privacyPolicyUrl accept either url string or a callback
     // function.
     // Terms of service url/callback.
-    tosUrl: '/',
+    tosUrl: './',
     // Privacy policy url/callback.
     privacyPolicyUrl: function() {
-      window.location.assign('/');
+      window.location.assign('./');
     }
   };
 
