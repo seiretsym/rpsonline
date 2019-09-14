@@ -1,3 +1,5 @@
+// ----------------------------------- Firebase Stuff goes here
+
 // Your web app's Firebase configuration
 var firebaseConfig = {
 apiKey: "AIzaSyAFaORLkbTeXnLhYTyrbk7bQUMZv-iQi3k",
@@ -46,20 +48,20 @@ var uiConfig = {
     privacyPolicyUrl: function() {
       window.location.assign('./');
     }
-  };
+};
 
-  var ui = new firebaseui.auth.AuthUI(firebase.auth());
-  // The start method will wait until the DOM is loaded.
-  ui.start('#firebaseui-auth-container', uiConfig);
+var ui = new firebaseui.auth.AuthUI(firebase.auth());
+// The start method will wait until the DOM is loaded.
+ui.start('#firebaseui-auth-container', uiConfig);
 
-  initApp = function() {
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
+initApp = function() {
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
         // User is signed in.
         user.getIdToken().then(function(accessToken) {
-          $("#signOut").removeClass("d-none");
-          $("#disclaimer").removeClass("d-none");
-          $("#firebaseui-auth-container").addClass("d-none");
+            $("#signOut").removeClass("d-none");
+            $("#disclaimer").removeClass("d-none");
+            $("#firebaseui-auth-container").addClass("d-none");
         });
 
         // get user name
@@ -98,21 +100,43 @@ var uiConfig = {
 
         });
 
-      } else {
+    } else {
         // User is signed out.
         $("#signOut").addClass("d-none");
         $("#disclaimer").addClass("d-none");
         $("#firebaseui-auth-container").removeClass("d-none");
-      }
-    }, function(error) {
-      console.log(error);
-    });
-  };
+    }
+}, function(error) {
+    console.log(error);
+});
+};
 
-  window.addEventListener('load', function() {
+// run initApp to do stuff after user signs in
+window.addEventListener('load', function() {
     initApp();
-  });
+});
 
-  $(document).on("click", "#signOut", function() {
-      firebase.auth().signOut();
-  })
+// button listener for signing out
+$(document).on("click", "#signOut", function() {
+    // sign out!
+    firebase.auth().signOut();
+})
+
+// ----------------------------------- Chat room stuff goes here
+
+// function to send message to chat
+
+    // push message to database
+
+
+// send button clicked
+
+    // check if input value is empty
+
+        // let user know if it is
+
+        // send message to chat if it isn't
+
+// database listener to populate chat messages
+
+    // add message to chatroom
