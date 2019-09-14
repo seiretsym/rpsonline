@@ -128,7 +128,6 @@ $(document).on("click", "#signOut", function() {
 
     // push message to database
 
-
 // send button clicked
 
     // check if input value is empty
@@ -138,5 +137,7 @@ $(document).on("click", "#signOut", function() {
         // send message to chat if it isn't
 
 // database listener to populate chat messages
-
+db.ref().child("chat").on("child_added", function(snapshot) {
     // add message to chatroom
+    $("#chat-display").append(snapshot.val().message)
+})
