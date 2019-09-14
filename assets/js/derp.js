@@ -125,16 +125,35 @@ $(document).on("click", "#signOut", function() {
 // ----------------------------------- Chat room stuff goes here
 
 // function to send message to chat
+function sendMessage(time, name, message) {
+    // format message
 
     // push message to database
+}
 
 // send button clicked
+$(document).on("click", "#chat-submit", function() {
 
     // check if input value is empty
-
+    if ($("#chat-input").val() == "") {
         // let user know if it is
-
+        $("#chat-input").attr("placeholder", "You can't send an empty message!")
+    }
+    else {
         // send message to chat if it isn't
+        var message = $("#chat-input").val();
+
+        // clear placeholder
+        $("#chat-input").attr("placeholder", "");
+
+        // get current time and user name
+        var timeStamp = "(" + moment().format("hh:mm a") + ") ";
+        var userName;
+
+        // send the message
+        sendMessage(timeStamp, userName, message)
+    }
+})
 
 // database listener to populate chat messages
 db.ref().child("chat").on("child_added", function(snapshot) {
