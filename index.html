@@ -7,6 +7,9 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <!-- firebaseui -->
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
 
     <title>Rock, Paper, Scissors (Multiplayer) by Kerwin Hy</title>
   </head>
@@ -15,7 +18,31 @@
     <div class="jumbotron bg-dark text-light text-center mb-1 pb-3 pt-3">
         <div class="container">
             <h1 class="display-4">Rock, Paper, Scissors</h1>
-            <p class="lead">Now online and multiplayer!</p>
+            <div id="firebaseui-auth-container"></div>
+
+            <div id="signOut" class="firebaseui-container firebaseui-page-provider-sign-in firebaseui-id-page-provider-sign-in firebaseui-use-spinner d-none">
+                <div class="firebaseui-card-content">
+                    <form onsubmit="return false;">
+                        <ul class="firebaseui-idp-list">
+                            <li class="firebaseui-list-item">
+                                <button class="firebaseui-idp-button mdl-button mdl-js-button mdl-button--raised firebaseui-idp-github firebaseui-id-idp-button" data-provider-id="github.com" data-upgraded=",MaterialButton">
+                                    <span class="firebaseui-idp-icon-wrapper">
+                                        <img class="firebaseui-idp-icon" alt="" src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/github.svg">
+                                    </span>
+                                    <span class="firebaseui-idp-text firebaseui-idp-text-long">Sign out from GitHub</span>
+                                    <span class="firebaseui-idp-text firebaseui-idp-text-short">GitHub</span>
+                                </button>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+                <div class="firebaseui-card-footer firebaseui-provider-sign-in-footer">
+                    <p class="firebaseui-tos firebaseui-tospp-full-message">By continuing, you are indicating that you accept our 
+                        <a href="javascript:void(0)" class="firebaseui-link firebaseui-tos-link" target="_blank">Terms of Service</a> and 
+                        <a href="javascript:void(0)" class="firebaseui-link firebaseui-pp-link" target="_blank">Privacy Policy</a>.
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -84,12 +111,15 @@
             </div>
         </div>
     </div>
-    </div>
-    <!-- Firebase, jQuery, Moment.js, Derp -->
+    <!-- Firebase, jQuery, Bootstrap, Moment.js, Derp -->
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
-    <script src="https://seiretsym.github.io/train_schedule/assets/js/moment.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-auth.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://seiretsym.github.io/train_schedule/assets/js/moment.min.js"></script>
     <script src="assets/js/derp.js"></script>
   </body>
 </html>
