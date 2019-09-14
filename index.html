@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Rock, Paper, Scissors (Multiplayer) by Kerwin Hy</title>
+  </head>
+  <body class="bg-dark">
+    <!-- jumbotron header -->
+    <div class="jumbotron bg-dark text-light text-center mb-1 pb-3 pt-3">
+        <div class="container">
+            <h1 class="display-4">Rock, Paper, Scissors</h1>
+            <p class="lead">Now online and multiplayer!</p>
+        </div>
+    </div>
+
+    <!-- content body -->
+    <div class="row mb-3 mx-0">
+        <!-- player 1 options left -->
+        <div id="player1" class="col-md-3 bg-dark">
+            <div class="card bg-secondary border-light" style="height: 30rem">
+            </div>
+        </div>
+        <!-- gameboard -->
+        <div id="gameboard" class="col-md-6 bg-dark mx-0 p-0">
+            <div class="card bg-secondary border-light" style="height: 30rem">
+            </div>
+        </div>
+        <!-- player 2 options -->
+        <div id="player2" class="col-md-3 bg-dark">
+            <div class="card bg-secondary border-light" style="height: 30rem">
+            </div>
+        </div>
+    </div>
+
+    <!-- bottom row -->
+    <div class="row m-0">
+        <!-- chat room -->
+        <div class="col-md-9 pr-0">
+        <div class="card bg-secondary border-light" style="height: 15rem">
+            <div class="card-header text-light font-weight-bold bg-dark px-3"><p class="m-0">Chatroom</p></div>
+            <div class="card-body bg-secondary text-light overflow-auto px-3 pt-0 pb-0 border border-light" id="chat-display">
+                <p class="m-0">ph</p>
+                <p class="m-0">ph</p>
+                <p class="m-0">ph</p>
+                <p class="m-0">ph</p>
+                <p class="m-0">ph</p>
+                <p class="m-0">ph</p>
+                <p class="m-0">ph</p>
+                <p class="m-0">ph</p>
+            </div>
+            <form class="form mx-3 mt-3">
+                <div class="input-group mb-3">
+                <input type="text" class="form-control bg-dark text-light btn-outline-dark border-light" id="chat-input">
+                <div class="input-group-append">
+                    <button class="btn px-3 btn-secondary text-light btn-outline-dark border-light" type="submit" id="chat-submit">Send</button>
+                </div>
+                </div>
+            </form>
+        </div>
+        <!-- users -->
+        </div>
+        <div class="col-md">
+            <div class="card bg-secondary border-light" style="height: 15rem">
+                <div class="card-header text-light font-weight-bold bg-dark px-3"><p class="m-0">Users</p></div>
+                <div class="card-body bg-secondary text-light overflow-auto px-3 pt-0 pb-0 border border-light" id="chat-users">
+                    <p class="m-0">ph</p>
+                    <p class="m-0">ph</p>
+                    <p class="m-0">ph</p>
+                    <p class="m-0">ph</p>
+                    <p class="m-0">ph</p>
+                    <p class="m-0">ph</p>
+                    <p class="m-0">ph</p>
+                    <p class="m-0">ph</p>
+                    <p class="m-0">ph</p>
+                    <p class="m-0">ph</p>
+                    <p class="m-0">ph</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- Firebase, jQuery, Moment.js, Derp -->
+    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+    <script src="https://seiretsym.github.io/train_schedule/assets/js/moment.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/derp.js"></script>
+  </body>
+</html>
