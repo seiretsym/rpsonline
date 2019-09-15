@@ -168,6 +168,9 @@ connectedRef.on("value", function(snap) {
 
 // when users are added to the connection list
 connectionsRef.on("value", function(snapshot) {
+    // empty list before repopulating
+    $("#chat-users").empty();
+    
     // read through connected users
     snapshot.forEach(function(childSnapshot) {
         if (childSnapshot.val().name !== undefined) {
