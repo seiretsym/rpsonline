@@ -17,7 +17,8 @@ var db = firebase.database();
 
 // global variables
 var userName,
-    email;
+    email,
+    userCount = 0;
 
 // FirebaseUI config.
 var uiConfig = {
@@ -91,11 +92,6 @@ firebase.auth().onAuthStateChanged(function(user) {
             userExists(snapshot);
         });
 
-        // add username to userlist
-        var p = $("<p>").attr("id", userName);
-        p.append(userName)
-        $("#chat-users").append(p);
-
     } else {
         // User is signed out.
         $("#signOut").addClass("d-none");
@@ -147,13 +143,62 @@ $(document).on("click", "#signOut", function() {
     firebase.auth().signOut();
 })
 
+// ----------------------------------- Check online users and display them in userlist if they're online
+// connection list
+var connectionsRef = db.ref("/connections");
+// connection status
+var connectedRef = db.ref(".info/connected");
+
+// listen to connection state
+connectedRef.on("value", function(snap) {
+    // if connection is made
+    if (snap.val()) {
+    // increment userCount
+    userCount++;
+    // add to list
+    var user = connectionsRef.push({
+        name: userName,
+        count: "user" + userCount
+    });
+
+    // remove from list if disconnected
+    user.onDisconnect().remove();
+  }
+})
+
+// when users are added to the connection list
+connectionsRef.on("value", function(snapshot) {
+    // read through connected users
+    snapshot.forEach(function(childSnapshot) {
+        if (childSnapshot.val().name !== undefined) {
+            // add user name to user list
+            var p = $("<p>").attr("id", childSnapshot.val().count);
+            p.append(childSnapshot.val().name);
+            $("#chat-users").append(p);
+        }
+    })
+})
+
+// when a user disconnects
+connectionsRef.on("child_removed", function(snapshot) {
+    userCount--;
+    // remove from userlist
+    var user = "#" + snapshot.val().count;
+    $(user).remove();
+})
+
+
 // ----------------------------------- Chat room stuff goes here
 
 // function to send message to chat
 function sendMessage(time, name, message) {
     // format message
+    var msg = time + name + ": " + message;
 
     // push message to database
+    db.ref().child("chat").push({
+        message: msg
+    })
 }
 
 // send button clicked
@@ -175,8 +220,7 @@ $(document).on("click", "#chat-submit", function() {
         $("#chat-input").attr("placeholder", "");
 
         // get current time and user name
-        var timeStamp = "(" + moment().format("hh:mm a") + ") ";
-        var userName;
+        var timeStamp = "(" + moment().format("MM/DD@h:mma") + ") ";
 
         // send the message
         sendMessage(timeStamp, userName, message)
@@ -186,5 +230,5 @@ $(document).on("click", "#chat-submit", function() {
 // database listener to populate chat messages
 db.ref().child("chat").on("child_added", function(snapshot) {
     // add message to chatroom
-    $("#chat-display").append(snapshot.val().message)
+    $("#chat-display").append(snapshot.val().message + "<br>")
 })
