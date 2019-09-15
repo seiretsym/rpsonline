@@ -15,6 +15,10 @@ firebase.initializeApp(firebaseConfig);
 
 var db = firebase.database();
 
+// global variables
+var userName,
+    email;
+
 // FirebaseUI config.
 var uiConfig = {
     callbacks: {
@@ -65,8 +69,8 @@ firebase.auth().onAuthStateChanged(function(user) {
         });
 
         // get user name
-        var userName = user.displayName;
-        var email = user.email
+        userName = user.displayName;
+        email = user.email
 
         // if display name is null then... use email address with provider omitted
         if (userName === null) {
@@ -84,32 +88,53 @@ firebase.auth().onAuthStateChanged(function(user) {
         // check database to see if user exists
         db.ref().child("users").once("value", function(snapshot) {
             // check each child in ./users
-            snapshot.forEach(function(childSnapshot) {
-                // looking for that email
-                if (childSnapshot.val().email === email) {
-                    // found it, so do something
-                }
-                else {
-                    // nope, so we're adding it to the database.
-                    db.ref().child("users").push({
-                        email: email,
-                        name: userName
-                    });
-                }
-            })
-
+            userExists(snapshot);
         });
+
+        // add username to userlist
+        var p = $("<p>").attr("id", userName);
+        p.append(userName)
+        $("#chat-users").append(p);
 
     } else {
         // User is signed out.
         $("#signOut").addClass("d-none");
         $("#disclaimer").addClass("d-none");
         $("#firebaseui-auth-container").removeClass("d-none");
+        // remove user from userlist
+        $("#"+userName).remove();
     }
 }, function(error) {
     console.log(error);
 });
 };
+
+// function to read through each child in users database
+function userExists(snapshot) {
+    // set a boolean to false
+    var userFound = false;
+
+    // read through each child
+    snapshot.forEach(function(childSnapshot) {
+        if (childSnapshot.val().email === email) {
+            // change boolean to true if user is found
+            userFound = true;
+        }
+    });
+
+    // stop function if user is found
+    if (userFound) {
+        return;
+    }
+    else {
+        // otherwise, add to database if user isn't found in database
+        db.ref().child("users").push({
+            email: email,
+            name: userName
+        });
+    }
+}
+
 
 // run initApp to do stuff after user signs in
 window.addEventListener('load', function() {
