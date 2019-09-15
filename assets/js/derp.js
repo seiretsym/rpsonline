@@ -170,7 +170,7 @@ connectedRef.on("value", function(snap) {
 connectionsRef.on("value", function(snapshot) {
     // empty list before repopulating
     $("#chat-users").empty();
-    
+
     // read through connected users
     snapshot.forEach(function(childSnapshot) {
         if (childSnapshot.val().name !== undefined) {
@@ -224,6 +224,11 @@ $(document).on("click", "#chat-submit", function() {
 
         // get current time and user name
         var timeStamp = "(" + moment().format("MM/DD@h:mma") + ") ";
+
+        // set username to guest if they aren't signed in to github
+        if (userName === undefined) {
+            userName = "Guest";
+        }
 
         // send the message
         sendMessage(timeStamp, userName, message)
