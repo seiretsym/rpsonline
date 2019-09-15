@@ -158,6 +158,8 @@ function sendMessage(time, name, message) {
 
 // send button clicked
 $(document).on("click", "#chat-submit", function() {
+    // prevent page refresh
+    event.preventDefault();
 
     // check if input value is empty
     if ($("#chat-input").val() == "") {
@@ -168,7 +170,8 @@ $(document).on("click", "#chat-submit", function() {
         // send message to chat if it isn't
         var message = $("#chat-input").val();
 
-        // clear placeholder
+        // clear input box
+        $("#chat-input").val("");
         $("#chat-input").attr("placeholder", "");
 
         // get current time and user name
