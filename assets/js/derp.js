@@ -156,6 +156,9 @@ connectedRef.on("value", function(snap) {
     // increment userCount
     userCount++;
     // add to list
+    if (userName === undefined) {
+        userName === "Guest-" + userCount;
+    }
     var user = connectionsRef.push({
         name: userName,
         count: "user" + userCount
@@ -240,3 +243,29 @@ db.ref().child("chat").on("child_added", function(snapshot) {
     // add message to chatroom
     $("#chat-display").append(snapshot.val().message + "<br>")
 })
+
+// ----------------------------------- RPS Stuff goes here
+
+// game rules
+// best out of 3
+// up to 2 players
+
+// 1. players can choose left or right side
+// 1a. page reflects left and right
+
+// 2. after both player slots are taken
+// 2a. countdown to start game begins
+// 2b. both players will have a set time to pick rock, paper, or scissors
+
+// 3. show results
+// 3aa. timer runs out
+// 3ab. both players have chosen
+
+// 4. round outcome
+// 4a. determine winner and keep score
+// 4ba. continue playing until up to 3 rounds have passed
+// 4bb. if a single player wins 2 in a row, determine winner
+
+// 5. match outcome
+// 5a. winner stays seated in player slot
+// 5b. loser gets booted and can't pick a slot until x amount of time passes

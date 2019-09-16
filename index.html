@@ -18,8 +18,9 @@
     <div class="jumbotron bg-dark text-light text-center mb-1 pb-3 pt-3">
         <div class="container">
             <h1 class="display-4">Rock, Paper, Scissors</h1>
+            <!-- firebaseui login container -->
             <div id="firebaseui-auth-container"></div>
-
+            <!-- custom signout button using firebaseui.css -->
             <div id="signOut" class="firebaseui-container firebaseui-page-provider-sign-in firebaseui-id-page-provider-sign-in firebaseui-use-spinner d-none">
                 <div class="firebaseui-card-content">
                     <form onsubmit="return false;">
@@ -86,7 +87,7 @@
         </div>
         <div class="col-md">
             <div class="card bg-secondary border-light" style="height: 15rem">
-                <div class="card-header text-light font-weight-bold bg-dark px-3"><p class="m-0">Users</p></div>
+                <div class="card-header text-light font-weight-bold bg-dark px-3"><p class="m-0">Players Online</p></div>
                 <div class="card-body bg-secondary text-light overflow-auto px-3 pt-0 pb-0 border border-light" id="chat-users">
                 </div>
             </div>
