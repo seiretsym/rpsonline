@@ -16,8 +16,8 @@ firebase.initializeApp(firebaseConfig);
 var db = firebase.database();
 
 // global variables
-var userName,
-    email,
+var userName = "guest";
+    email = "email",
     userCount = 0;
 
 // FirebaseUI config.
@@ -153,17 +153,10 @@ var connectedRef = db.ref(".info/connected");
 connectedRef.on("value", function(snap) {
     // if connection is made
     if (snap.val()) {
-    // increment userCount
-    userCount++;
     // add to list
-    if (userName === undefined) {
-        userName === "Guest-" + userCount;
-    }
     var user = connectionsRef.push({
         name: userName,
-        count: "user" + userCount
     });
-
     // remove from list if disconnected
     user.onDisconnect().remove();
   }
@@ -173,12 +166,18 @@ connectedRef.on("value", function(snap) {
 connectionsRef.on("value", function(snapshot) {
     // empty list before repopulating
     $("#chat-users").empty();
+    // set usercount back to 0 because this refreshes every time a new user connects
+    userCount = 0;
 
     // read through connected users
     snapshot.forEach(function(childSnapshot) {
+        // increase userCount for each child
+        userCount++;
+
         if (childSnapshot.val().name !== undefined) {
             // add user name to user list
-            var p = $("<p>").attr("id", childSnapshot.val().count);
+            var p = $("<p>").attr("id", "#user" + userCount);
+            p.addClass("mb-0");
             p.append(childSnapshot.val().name);
             $("#chat-users").append(p);
         }
@@ -187,9 +186,8 @@ connectionsRef.on("value", function(snapshot) {
 
 // when a user disconnects
 connectionsRef.on("child_removed", function(snapshot) {
-    userCount--;
     // remove from userlist
-    var user = "#" + snapshot.val().count;
+    var user = "#user" + userCount;
     $(user).remove();
 })
 
@@ -228,11 +226,6 @@ $(document).on("click", "#chat-submit", function() {
         // get current time and user name
         var timeStamp = "(" + moment().format("MM/DD@h:mma") + ") ";
 
-        // set username to guest if they aren't signed in to github
-        if (userName === undefined) {
-            userName = "Guest";
-        }
-
         // send the message
         sendMessage(timeStamp, userName, message)
     }
@@ -240,8 +233,11 @@ $(document).on("click", "#chat-submit", function() {
 
 // database listener to populate chat messages
 db.ref().child("chat").on("child_added", function(snapshot) {
+    var chatDisplay = document.getElementById("chat-display");
     // add message to chatroom
     $("#chat-display").append(snapshot.val().message + "<br>")
+    // scroll chat container to bottom
+    chatDisplay.scrollTop = chatDisplay.scrollHeight;
 })
 
 // ----------------------------------- RPS Stuff goes here
@@ -269,3 +265,5 @@ db.ref().child("chat").on("child_added", function(snapshot) {
 // 5. match outcome
 // 5a. winner stays seated in player slot
 // 5b. loser gets booted and can't pick a slot until x amount of time passes
+
+// use buttons for rock, paper, scissor, so create click listeners

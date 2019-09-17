@@ -50,8 +50,29 @@
     <!-- content body -->
     <div class="row mb-3 mx-0">
         <!-- player 1 options left -->
-        <div id="player1" class="col-md-3 bg-dark">
-            <div class="card bg-secondary border-light" style="height: 30rem">
+        <div id="playerLeft" class="col-md-3 bg-dark">
+            <div class="card text-light bg-secondary border-light" style="height: 30rem">
+                <div class="card-body d-flex flex-column">
+                    <div class="card-header bg-secondary border border-light font-weight-bold text-center">Open</div>
+                    <div class="card-subtitle bg-secondary border border-light mb-auto px-2">
+                        <div class="row">
+                            <div class="col-md">
+                                <strong>Wins:</strong> <span id="pRightWins">0</span>
+                            </div>
+                            <div class="col-md">
+                                <strong>Losses:</strong> <span id="pRightLosses">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-text mb-auto mt-auto">
+                        <button class="btn px-3 btn-secondary text-light btn-outline-dark border-light w-100 mb-1">Rock</button>
+                        <button class="btn px-3 btn-secondary text-light btn-outline-dark border-light w-100 mb-1">Paper</button>
+                        <button class="btn px-3 btn-secondary text-light btn-outline-dark border-light w-100 mb-1">Scissor</button>
+                    </div>
+                    <div class="card-text mt-auto">
+                        <button class="btn px-3 btn-secondary text-light btn-outline-dark border-light w-100">Join</button>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- gameboard -->
@@ -60,8 +81,29 @@
             </div>
         </div>
         <!-- player 2 options -->
-        <div id="player2" class="col-md-3 bg-dark">
+        <div id="playerRight" class="col-md-3 bg-dark">
             <div class="card bg-secondary border-light" style="height: 30rem">
+                <div class="card-body text-light d-flex flex-column">
+                    <div class="card-header bg-secondary border border-light font-weight-bold text-center">Open</div>
+                    <div class="card-subtitle bg-secondary border border-light mb-auto px-2">
+                        <div class="row">
+                            <div class="col-md">
+                                <strong>Wins:</strong> <span id="pRightWins">0</span>
+                            </div>
+                            <div class="col-md">
+                                <strong>Losses:</strong> <span id="pRightLosses">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-text mb-auto mt-auto">
+                        <button class="btn px-3 btn-secondary text-light btn-outline-dark border-light w-100 mb-1">Rock</button>
+                        <button class="btn px-3 btn-secondary text-light btn-outline-dark border-light w-100 mb-1">Paper</button>
+                        <button class="btn px-3 btn-secondary text-light btn-outline-dark border-light w-100 mb-1">Scissor</button>
+                    </div>
+                    <div class="card-text mt-auto">
+                        <button class="btn px-3 btn-secondary text-light btn-outline-dark border-light w-100">Join</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -102,6 +144,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://seiretsym.github.io/train_schedule/assets/js/moment.min.js"></script>
-    <script src="assets/js/derp.js"></script>
+    <script src="./assets/js/derp.js"></script>
   </body>
 </html>
